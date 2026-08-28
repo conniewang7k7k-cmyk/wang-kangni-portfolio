@@ -1,0 +1,45 @@
+/* ===== Ripple 波纹效果 ===== */
+.ripple-host {
+  position: relative;
+  overflow: hidden;            /* 关键：把波纹裁掉在按钮边界内 */
+  isolation: isolate;          /* 创建新层叠上下文，避免 z-index 串扰 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 波纹层：定位在按钮内最上层但不影响点击 */
+.ripple-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 单个圆形波纹 */
+.ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0.5;
+  animation: ripple-grow 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes ripple-grow {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* 确保波纹层之上的文字依然可读、不被覆盖 */
+.ripple-host > *:not(.ripple-layer) {
+  position: relative;
+  z-index: 2;
+}

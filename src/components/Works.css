@@ -1,0 +1,29 @@
+/* ===== 项目详情页通用 wrapper ===== */
+.works-section {
+  padding: 100px 0 60px;
+  background: var(--color-cream);
+  position: relative;
+}
+
+.works-section + .works-section {
+  padding-top: 80px;
+}
+
+.works-section .ws-head {
+  margin-bottom: 80px;
+  padding-top: 12px;
+}
+
+.ribbon-band--dark {
+  background: var(--color-ink);
+  color: var(--color-yellow-400);
+  border-block-color: var(--color-yellow-500);
+  margin-bottom: 60px;
+}
+.ribbon-band--dark .ribbon-band__track span::after {
+  color: var(--color-yellow-500);
+}
+
+@media (max-width: 720px) {
+  .works-section { padding: 60px 0 40px; }
+}

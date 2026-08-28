@@ -1,0 +1,169 @@
+/* ===== Contact 整屏收尾 — 深底 ===== */
+.contact {
+  position: relative;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  padding: 140px 0 60px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.contact__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+}
+.contact__glow--1 {
+  top: -100px;
+  right: -100px;
+  width: 480px;
+  height: 480px;
+  background: rgba(245, 184, 46, 0.28);
+}
+.contact__glow--2 {
+  bottom: -120px;
+  left: -120px;
+  width: 380px;
+  height: 380px;
+  background: rgba(255, 107, 53, 0.18);
+}
+
+.contact__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.contact__eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--color-yellow-500);
+  border: 1px solid var(--color-yellow-500);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 48px;
+}
+
+.contact__title {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 12vw, 180px);
+  font-weight: 500;
+  line-height: 0.95;
+  color: var(--color-cream);
+  letter-spacing: -0.03em;
+  margin-bottom: 48px;
+}
+.contact__line {
+  display: block;
+}
+.contact__line--italic {
+  font-style: italic;
+  color: var(--color-yellow-500);
+}
+
+.contact__lead {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.6vw, 26px);
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(250, 246, 236, 0.85);
+  margin: 0 auto 56px;
+  max-width: 720px;
+}
+.contact__lead em {
+  color: var(--color-yellow-500);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* 邮箱 CTA — Hover Shadow 加强 */
+.contact__mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: clamp(20px, 2vw, 32px);
+  font-weight: 500;
+  color: var(--color-ink);
+  background: var(--color-yellow-500);
+  padding: 24px 44px;
+  border-radius: 999px;
+  border: 2px solid var(--color-yellow-500);
+  margin-bottom: 80px;
+  /* 默认 elev-0：让 CTA 也有微微悬浮感 */
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.18),
+    0 4px 16px rgba(245, 184, 46, 0.35);
+  transition:
+    transform 0.45s var(--ease-out-expo),
+    background 0.3s,
+    border-color 0.3s,
+    box-shadow 0.45s var(--ease-out-expo);
+}
+.contact__mail:hover {
+  background: var(--color-cream);
+  border-color: var(--color-cream);
+  transform: translateY(-6px);
+  /* hover 阴影大幅加深，黄色 CTA 投出暖光 */
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 12px 32px rgba(245, 184, 46, 0.55),
+    0 32px 72px rgba(245, 184, 46, 0.3),
+    0 48px 96px rgba(255, 107, 53, 0.18);
+}
+
+/* 联系方式 4 列 */
+.contact__ways {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 80px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 0;
+  border-top: 1px solid rgba(250, 246, 236, 0.15);
+  border-bottom: 1px solid rgba(250, 246, 236, 0.15);
+  justify-items: center;
+}
+.contact__way {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.contact__way-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: rgba(250, 246, 236, 0.5);
+}
+.contact__way-val {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-cream);
+}
+.contact__way a:hover { color: var(--color-yellow-500); }
+
+/* 页脚 */
+.contact__footer {
+  margin-top: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: rgba(250, 246, 236, 0.5);
+}
+
+@media (max-width: 1100px) {
+  .contact__title { font-size: clamp(56px, 14vw, 100px); }
+  .contact__ways { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .contact__footer { flex-direction: column; gap: 8px; }
+}

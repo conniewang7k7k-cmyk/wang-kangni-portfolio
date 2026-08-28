@@ -1,0 +1,279 @@
+/* ===== 获奖项目 - 模块 1 封面 ===== */
+.ad-cover {
+  position: relative;
+  padding: 80px 56px;
+  border: 1px solid var(--color-line);
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fbf3df 0%, #efd194 45%, #c08f3e 100%);
+  box-shadow: 0 18px 60px rgba(120, 78, 18, 0.22);
+}
+.ad-cover__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 12% 20%, rgba(255,255,255,0.55) 0, transparent 38%),
+    radial-gradient(circle at 88% 80%, rgba(255,255,255,0.4) 0, transparent 42%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 14px);
+  mix-blend-mode: soft-light;
+}
+.ad-cover__bg::after {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 18px;
+  pointer-events: none;
+}
+.ad-cover__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.ad-cover__info { display: flex; flex-direction: column; gap: 24px; }
+.ad-cover__title {
+  font-family: var(--font-display);
+  font-size: 96px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin: 0;
+  color: var(--color-ink);
+}
+.ad-cover__en {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--color-ink-light, #6B5840);
+  text-transform: uppercase;
+}
+.ad-cover__tagline {
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--color-ink);
+  margin: 0;
+}
+.ad-cover__tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.ad-cover__tag-chip {
+  padding: 6px 14px;
+  border: 1px solid var(--color-ink);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(4px);
+}
+.ad-cover__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(58, 30, 8, 0.18);
+  margin: 0;
+}
+.ad-cover__meta > div { display: flex; flex-direction: column; gap: 4px; }
+.ad-cover__meta dt {
+  font-size: 12px;
+  color: var(--color-ink-light, #6B5840);
+  letter-spacing: 0.08em;
+}
+.ad-cover__meta dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+.ad-cover__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(58, 30, 8, 0.18);
+}
+.ad-cover__stat { display: flex; flex-direction: column; gap: 4px; }
+.ad-cover__stat-num {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  color: #8a3a0e;
+  font-style: italic;
+}
+.ad-cover__stat-label {
+  font-size: 12px;
+  color: var(--color-ink-light, #6B5840);
+  letter-spacing: 0.05em;
+}
+.ad-cover__cert {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ad-cover__cert img {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  border-radius: 6px;
+  box-shadow:
+    0 14px 36px rgba(58, 30, 8, 0.18),
+    0 2px 6px rgba(58, 30, 8, 0.08);
+  transition: transform 0.5s var(--ease-out-expo);
+}
+.ad-cover__cert:hover img { transform: translateY(-4px) scale(1.01); }
+.ad-cover__cert-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  text-align: center;
+  padding-top: 6px;
+}
+.ad-cover__cert-mark {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  color: #8a3a0e;
+  text-transform: uppercase;
+}
+.ad-cover__cert-title {
+  font-size: 14px;
+  color: var(--color-ink);
+  letter-spacing: 0.04em;
+}
+
+/* ===== 模块 3 总结 ===== */
+/* ===== 模块 2 项目总结（位于奖项一览下方） ===== */
+.ad-summary {
+  margin-top: 60px;
+}
+.ad-summary__body { max-width: 100%; }
+.ad-summary__body p {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--color-ink);
+  margin: 0 0 14px 0;
+}
+.ad-summary__body p:last-child { margin-bottom: 0; }
+
+/* ===== 模块 2 奖项一览（纯图片墙） ===== */
+.xw-awards {
+  margin-top: 40px;
+}
+
+/* 紧凑版模块头已废弃，使用 global.css 中 .module-head 标准样式 */
+
+.xw-awards__gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 18px;
+}
+.xw-awards__photo {
+  position: relative;
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #faf7f1;
+  border: 1px solid var(--color-line);
+  aspect-ratio: 5 / 7;
+}
+.xw-awards__photo-num {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-ink);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2px 10px;
+  border-radius: 3px;
+}
+.xw-awards__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ===== 模块：作品展示（如酱排骨消消乐全图） ===== */
+.ad-works {
+  margin-top: 96px;
+}
+.ad-works__intro {
+  margin: 8px 0 28px;
+}
+.ad-works__title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 0 0 8px;
+}
+.ad-works__title-zh {
+  font-family: var(--font-display, serif);
+  font-size: clamp(40px, 4vw, 64px);
+  font-weight: 600;
+  color: var(--color-yellow-500, #B8860B);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.ad-works__title-en {
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--color-ink-soft, #5a5a5a);
+}
+.ad-works__tagline {
+  font-family: var(--font-display, serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--color-ink, #1a1a1a);
+  margin: 0;
+  opacity: 0.85;
+}
+.ad-works__gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.ad-works__photo {
+  margin: 0;
+}
+.ad-works__photo:hover {
+  transform: none;
+}
+.ad-works__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 780px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 1100px) {
+  .ad-cover { padding: 56px 32px; }
+  .ad-cover__inner { grid-template-columns: 1fr; gap: 40px; }
+  .ad-cover__title { font-size: 72px; }
+  .ad-cover__cert img { max-width: 100%; }
+  .xw-awards__gallery { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .ad-cover { padding: 40px 24px; }
+  .ad-cover__inner { gap: 28px; }
+  .ad-cover__title { font-size: 56px; }
+  .ad-cover__meta, .ad-cover__stats { grid-template-columns: 1fr; }
+  .xw-awards__gallery { grid-template-columns: 1fr 1fr; }
+}

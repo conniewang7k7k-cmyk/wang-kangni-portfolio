@@ -1,0 +1,282 @@
+/* ===== 首页作品预览区 ===== */
+.works-preview {
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+.wp__head {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 56px;
+}
+.wp__intro {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.7;
+  color: var(--color-ink-muted);
+  max-width: 460px;
+}
+
+/* 项目大卡 */
+.wp__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 100px;
+  /* FLIP 重排时，容器自身不要有 transition；
+     只让子卡片通过内联 transform 平移，避免布局抖动 */
+  position: relative;
+}
+
+.wpcard {
+  border-radius: 24px;
+  overflow: hidden;
+  /* 设为可见，避免 preserve-3d 不可见时裁切掉 translateZ 部分 */
+  background: var(--pc-bg);
+  position: relative;
+  /* Hover Shadow：默认 elev-0，hover 时升级到 elev-2（黄色主题） */
+  box-shadow:
+    0 1px 2px rgba(26, 26, 26, 0.06),
+    0 4px 16px rgba(26, 26, 26, 0.06);
+  transition:
+    box-shadow 0.5s var(--ease-out-expo);
+}
+.wpcard:hover {
+  box-shadow:
+    0 2px 4px rgba(26, 26, 26, 0.08),
+    0 16px 32px rgba(245, 184, 46, 0.25),
+    0 36px 72px rgba(245, 184, 46, 0.15);
+}
+
+/* ===== 暗色卡片（AI 视频）—— 文字反色，提升可视性 ===== */
+.wpcard--dark {
+  --pc-ink: #FFFFFF;
+  --pc-ink-muted: rgba(255, 255, 255, 0.7);
+  --pc-line: rgba(255, 255, 255, 0.85);
+  --pc-chip-bg: rgba(255, 255, 255, 0.1);
+  --pc-shadow: 0 0 0 rgba(0,0,0,0);  /* 暗色卡去掉黑色 hard shadow */
+}
+.wpcard--dark .wpcard__num {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1A1A1A;
+}
+.wpcard--dark .wpcard__title { color: #FFFFFF; }
+.wpcard--dark .wpcard__en { color: #FFFFFF; }
+.wpcard--dark .wpcard__tagline { color: #FFFFFF; }
+.wpcard--dark .wpcard__cat {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+.wpcard--dark .wpcard__tag {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.wpcard--dark .wpcard__cta {
+  color: #FFFFFF;
+  border-bottom-color: #FFFFFF;
+}
+/* ===== 3D 倾斜层 ===== */
+/* 外层 .wpcard 不动 transform，留给 FLIP 重排 */
+.wpcard__inner {
+  display: block;
+  position: relative;          /* 让 wpcard__num 绝对定位有参考系 */
+  /* 进入 3D 上下文：子元素的 translateZ 才会真正推远 */
+  transform-style: preserve-3d;
+  /* inline transform 由 use3DTilt 设置 perspective + rotateX/Y + scale */
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  border-radius: inherit;
+  background: inherit;
+}
+.wpcard__btn {
+  width: 100%;
+  display: block;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* ===== 倾斜驱动的浮起子元素 ===== */
+/* --tilt-strength 由 use3DTilt 维护（0 ~ 1） */
+/* 不同层用不同的 z-depth，元素以不同深度浮起，越靠前的越向上 */
+.tilt-child {
+  --z: calc(var(--tilt-strength, 0) * 24px);
+  transform: translateZ(var(--z));
+  transition: transform 200ms ease-out;
+  /* 防止 translateZ 在某些浏览器里被裁切 */
+  will-change: transform;
+}
+/* 标题族更深浮起 */
+.wpcard__title {
+  --z: calc(var(--tilt-strength, 0) * 48px) !important;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4vw, 56px);
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.wpcard__en {
+  --z: calc(var(--tilt-strength, 0) * 36px) !important;
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--color-ink);
+  margin-bottom: 18px;
+}
+/* 标签族中等深度 */
+.wpcard__cat {
+  --z: calc(var(--tilt-strength, 0) * 28px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--color-ink);
+  background: rgba(250, 246, 236, 0.85);
+  border: 1px solid var(--color-ink);
+  border-radius: 999px;
+  margin-bottom: 14px;
+  backdrop-filter: blur(6px);
+}
+.wpcard__num {
+  --z: calc(var(--tilt-strength, 0) * 14px);
+  position: absolute !important;     /* 覆盖 Ripple .ripple-host > * 的 relative */
+  top: 24px;
+  right: 28px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-ink);
+  background: var(--color-cream);
+  padding: 7px 14px;
+  border-radius: 999px;
+  z-index: 3 !important;             /* 同上，保留层级 */
+  width: max-content;                /* 防止被父级撑到全宽 */
+}
+/* meta */
+.wpcard__meta {
+  padding: 56px 40px 40px;
+}
+.wpcard__title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4vw, 56px);
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.wpcard__en {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--color-ink);
+  margin-bottom: 18px;
+}
+.wpcard__tagline {
+  --z: calc(var(--tilt-strength, 0) * 30px);
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.5;
+  color: var(--color-ink);
+  margin-bottom: 20px;
+}
+.wpcard__tags {
+  --z: calc(var(--tilt-strength, 0) * 22px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.wpcard__tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 5px 10px;
+  background: var(--color-cream);
+  border: 1px solid var(--color-ink);
+  border-radius: 999px;
+  color: var(--color-ink);
+}
+.wpcard__cta {
+  --z: calc(var(--tilt-strength, 0) * 20px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-ink);
+  border-bottom: 1.5px solid var(--color-ink);
+  padding-bottom: 4px;
+}
+
+/* Skills 双列 */
+.wp__skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  border-top: 1.5px solid var(--color-ink);
+  border-bottom: 1.5px solid var(--color-ink);
+  padding: 48px 0;
+  margin-bottom: 80px;
+}
+.wp__skill-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3vw, 48px);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-yellow-600);
+  margin-bottom: 24px;
+}
+.wp__skill-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.wp__skill-chip {
+  display: inline-flex;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-ink);
+  padding: 6px 14px;
+  background: var(--color-cream-deep);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 1px rgba(26, 26, 26, 0.04),
+    0 2px 6px rgba(26, 26, 26, 0.04);
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s var(--ease-out-expo),
+    transform 0.3s var(--ease-out-expo);
+}
+.wp__skill-chip:hover {
+  border-color: var(--color-ink);
+  transform: translateY(-2px);
+  box-shadow:
+    0 2px 4px rgba(26, 26, 26, 0.06),
+    0 8px 16px rgba(245, 184, 46, 0.2),
+    0 16px 32px rgba(245, 184, 46, 0.08);
+}
+
+@media (max-width: 1100px) {
+  .wp__head { grid-template-columns: 1fr; gap: 32px; }
+  .wp__cards { grid-template-columns: 1fr; }
+  .wp__skills { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 720px) {
+  .wpcard__meta { padding: 28px 24px 32px; }
+}

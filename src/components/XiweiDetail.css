@@ -1,0 +1,440 @@
+/* ===== 锡味寻踪详情页 8 模块 — 水墨风 ===== */
+.xw > * + * { margin-top: 96px; }
+
+/* ===== 模块 01 封面 — 水墨配色 ===== */
+.xw-cover {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  background: linear-gradient(135deg, #E8E2D2 0%, #B8A98A 100%);
+  border-radius: 32px;
+  padding: 64px;
+  min-height: 540px;
+  position: relative;
+  overflow: hidden;
+}
+
+.xw-cover__art {
+  position: relative;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+}
+.xw-cover__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  object-position: center;
+}
+.xw-cover__ink-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 70%, rgba(92, 74, 46, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(184, 169, 138, 0.4) 0%, transparent 60%);
+}
+.xw-cover__mountains {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background:
+    linear-gradient(to top, rgba(92, 74, 46, 0.45) 0%, transparent 100%);
+  clip-path: polygon(
+    0 100%, 0 60%, 12% 35%, 25% 50%, 38% 20%, 50% 45%, 65% 25%, 78% 50%,
+    90% 35%, 100% 60%, 100% 100%
+  );
+}
+.xw-cover__title-board {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+}
+.xw-cover__title-zh {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: 0.15em;
+}
+.xw-cover__title-en {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--color-ink);
+  margin-top: 12px;
+}
+.xw-cover__ink {
+  position: absolute;
+  background: rgba(92, 74, 46, 0.5);
+  border-radius: 50%;
+  filter: blur(28px);
+}
+.xw-cover__ink--1 {
+  top: 60px;
+  left: 30px;
+  width: 90px;
+  height: 60px;
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+}
+.xw-cover__ink--2 {
+  bottom: 80px;
+  right: 40px;
+  width: 110px;
+  height: 70px;
+  border-radius: 50%;
+}
+.xw-cover__scroll {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 80px;
+  background: #C7B89B;
+  border: 1px solid var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-ink);
+  border-radius: 4px;
+}
+
+.xw-cover__title {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 9vw, 140px);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  margin-bottom: 8px;
+}
+.xw-cover__en {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--color-ink);
+  margin-bottom: 24px;
+}
+.xw-cover__tag {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.8vw, 28px);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-ink);
+  margin-bottom: 28px;
+}
+.xw-cover__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 32px;
+}
+.xw-cover__tag-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 5px 10px;
+  background: var(--color-cream);
+  border: 1.5px solid var(--color-ink);
+  border-radius: 999px;
+  color: var(--color-ink);
+  font-weight: 500;
+}
+.xw-cover__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+  border-top: 1.5px solid var(--color-ink);
+  padding-top: 24px;
+}
+.xw-cover__meta div { display: flex; flex-direction: column; gap: 4px; }
+.xw-cover__meta dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  opacity: 0.7;
+}
+.xw-cover__meta dd {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* ===== 模块 02 电梯演讲 ===== */
+.xw-pitch__frame {
+  position: relative;
+  padding: 48px 56px;
+  background: #F4EFE2;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 4px;
+}
+.xw-pitch__seal {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  background: var(--color-brick);
+  color: var(--color-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  transform: rotate(8deg);
+  border-radius: 6px;
+}
+.xw-pitch__body {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.8vw, 28px);
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+.xw-pitch__highlight {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-brick);
+}
+
+/* ===== 模块 03 概述 ===== */
+.xw-overview__text {
+  max-width: 100%;
+}
+.xw-overview__text p {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.6vw, 26px);
+  line-height: 1.7;
+  color: var(--color-ink);
+  margin-bottom: 18px;
+}
+
+/* ===== 模块 04 目标 ===== */
+.xw-goals__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.xw-goal-card {
+  padding: 40px 32px;
+  background: var(--color-cream-deep);
+  border: 1px dashed var(--color-ink);
+  border-radius: 12px;
+  position: relative;
+}
+.xw-goal-card__tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-brick);
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--color-brick);
+  padding-bottom: 8px;
+}
+.xw-goal-card__desc {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+/* ===== 模块 05 界面展示 — 20 张真实手机 mockup ===== */
+.xw-screens__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+.xw-screen-card {
+  background: #F4EFE2;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.5s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo),
+    border-color 0.3s ease;
+  position: relative;
+}
+.xw-screen-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-ink);
+  box-shadow:
+    0 8px 20px rgba(26, 26, 26, 0.12),
+    0 16px 36px rgba(245, 184, 46, 0.2);
+}
+.xw-screen-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-line);
+  background: rgba(255, 255, 255, 0.4);
+}
+.xw-screen-card__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-cream);
+  background: var(--color-ink);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+.xw-screen-card__num {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink);
+  letter-spacing: 0.04em;
+}
+.xw-screen-card__art {
+  position: relative;
+  aspect-ratio: 1500 / 734;
+  background: linear-gradient(135deg, #E8E2D2 0%, #B8A98A 100%);
+  overflow: hidden;
+}
+.xw-screen-card__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.xw-screen-card:hover .xw-screen-card__art img {
+  transform: scale(1.04);
+}
+.xw-screen-card__ink {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(92, 74, 46, 0.15) 0%, transparent 60%);
+}
+.xw-screen-card__body { padding: 14px 16px; }
+.xw-screen-card__name {
+  display: none;
+}
+.xw-screen-card__desc {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+/* ===== 模块 06 亮点 ===== */
+.xw-highlights__list {
+  display: grid;
+  gap: 20px;
+}
+.xw-highlight-card {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 32px;
+  padding: 40px 48px;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  border-radius: 12px;
+  align-items: center;
+}
+.xw-highlight-card__num {
+  font-family: var(--font-display);
+  font-size: 80px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-yellow-500);
+  line-height: 1;
+}
+.xw-highlight-card__title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-yellow-400);
+}
+.xw-highlight-card__desc {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(250, 246, 236, 0.85);
+}
+
+/* ===== 模块 07 系统 ===== */
+.xw-system__list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--color-cream);
+}
+.xw-system__item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 36px 24px;
+  border-right: 1px solid var(--color-line);
+}
+.xw-system__item:last-child { border-right: none; }
+.xw-system__num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-style: italic;
+  color: var(--color-brick);
+  font-weight: 600;
+}
+.xw-system__label {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* ===== 模块 08 总结 ===== */
+.xw-summary__body {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.7vw, 28px);
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+.xw-summary__body p { margin-bottom: 16px; }
+
+
+@media (max-width: 1500px) {
+  .xw-screens__grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 1100px) {
+  .xw-cover { grid-template-columns: 1fr; padding: 40px 28px; }
+  .xw-cover__art { height: 320px; }
+  .xw-goals__grid { grid-template-columns: 1fr 1fr; }
+  .xw-screens__grid { grid-template-columns: repeat(3, 1fr); }
+  .xw-system__list { grid-template-columns: repeat(2, 1fr); }
+  .xw-system__item { border-right: none; border-bottom: 1px solid var(--color-line); }
+  .xw-highlight-card { grid-template-columns: 80px 1fr; gap: 24px; padding: 32px; }
+}
+@media (max-width: 720px) {
+  .xw-cover { padding: 32px 24px; }
+  .xw-goals__grid { grid-template-columns: 1fr; }
+  .xw-screens__grid { grid-template-columns: repeat(2, 1fr); }
+  .xw-highlight-card { grid-template-columns: 1fr; gap: 16px; }
+  .xw-highlight-card__num { font-size: 56px; }
+}

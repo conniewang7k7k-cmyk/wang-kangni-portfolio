@@ -1,0 +1,78 @@
+/* ===== 筛选 Tabs —— 黄色 + 科技感 ===== */
+.filter-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: var(--color-cream-deep);
+  border: 1.5px solid var(--color-ink);
+  border-radius: 999px;
+  margin-bottom: 56px;
+  position: relative;
+  isolation: isolate;
+}
+
+.filter-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease;
+}
+
+.filter-tab:hover:not(.is-active) {
+  color: var(--color-ink);
+  background: rgba(245, 184, 46, 0.12);
+}
+
+.filter-tab.is-active {
+  color: var(--color-ink);
+  background: var(--color-yellow-400);
+}
+
+.filter-tab__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--color-ink);
+  background: var(--color-cream);
+  border: 1px solid var(--color-ink);
+  border-radius: 999px;
+}
+
+.filter-tab.is-active .filter-tab__count {
+  background: var(--color-ink);
+  color: var(--color-yellow-400);
+  border-color: var(--color-ink);
+}
+
+.filter-tab__bar {
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 18px;
+  height: 2px;
+  background: var(--color-brick);
+  border-radius: 2px;
+  transform: translateX(-50%);
+}

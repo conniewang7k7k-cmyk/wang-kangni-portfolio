@@ -1,0 +1,14 @@
+node_modules
+dist
+tmp
+.workbuddy
+*.log
+.DS_Store
+
+# 根目录的工作截图（非网站资源），按需可删
+/ad-*.png
+/xw-*.png
+
+# vite 临时文件与本地回收站
+vite.config.js.timestamp-*.mjs
+.trash

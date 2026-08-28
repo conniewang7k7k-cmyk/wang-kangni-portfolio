@@ -1,0 +1,468 @@
+/* ===== Design Tokens ===== */
+:root {
+  /* 黄色主色 — 阳光、高级 */
+  --color-yellow-50: #FFFDF5;
+  --color-yellow-100: #FFF8E7;
+  --color-yellow-200: #FFEFCC;
+  --color-yellow-300: #FFE093;
+  --color-yellow-400: #FFD055;
+  --color-yellow-500: #F5B82E;
+  --color-yellow-600: #E0A01A;
+  --color-yellow-700: #B57F12;
+
+  /* 中性 */
+  --color-cream: #FAF6EC;
+  --color-cream-deep: #F4EEDC;
+  --color-ink: #1A1A1A;
+  --color-ink-soft: #2D2A24;
+  --color-ink-muted: #6B6457;
+  --color-line: #E8E2D2;
+  --color-line-soft: #F0EBDD;
+
+  /* 装饰辅色（来自参考图） */
+  --color-brick: #C03B23;      /* natalio 风的边框红 */
+  --color-orange: #FF6B35;     /* CTA 暖橙 */
+  --color-pink: #F5BFC9;       /* milu 风的奶油粉 */
+  --color-sky: #6BA3D0;        /* gravity off 的蓝 */
+
+  /* 科技感辅色 */
+  --color-tech-cyan: #4FB8D9;
+  --color-tech-lime: #C8E64E;
+  --color-grid-line: rgba(26, 26, 26, 0.045);
+  --color-grid-line-strong: rgba(26, 26, 26, 0.08);
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", "Songti SC", "STSong", "Noto Serif SC", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+
+  /* Layout */
+  --max-width: 1700px;
+  --gutter: 80px;
+  --section-pad: 120px;
+
+  /* Easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+img, video, svg { display: block; max-width: 100%; }
+button { font: inherit; border: none; background: none; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+/* ===== Layout helpers ===== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.section {
+  padding: var(--section-pad) 0;
+  position: relative;
+}
+
+/* ===== Section eyebrow / heading ===== */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-yellow-700);
+  margin-bottom: 28px;
+}
+.eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--color-yellow-500);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+.section-title em {
+  font-style: italic;
+  color: var(--color-yellow-600);
+  font-weight: 400;
+}
+
+/* ===== Animations ===== */
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50%      { transform: translate(20px, -15px) rotate(2deg); }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes ribbon-move {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 科技感：扫描扫光 */
+@keyframes shine-sweep {
+  0%   { transform: translateX(-100%); }
+  60%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+/* 科技感：辉光呼吸 */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+/* 科技感：单点闪烁 */
+@keyframes blink {
+  0%, 60%, 100% { opacity: 1; }
+  30%           { opacity: 0.2; }
+}
+
+/* Scroll Shadow 变量 —— 由 JS 实时覆盖 */
+:root {
+  --scroll-shadow-y: 0px;        /* 当前阴影 Y 偏移 */
+  --scroll-shadow-blur: 0px;     /* 当前阴影模糊 */
+  --scroll-shadow-alpha: 0;      /* 阴影透明度 0–0.18 */
+}
+
+/* Scroll Shadow 1：固定 nav 下方那一道弥散阴影 */
+.nav-shadow-band {
+  position: fixed;
+  top: 76px;
+  left: 0;
+  right: 0;
+  height: 28px;
+  pointer-events: none;
+  z-index: 99;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 26, 26, calc(var(--scroll-shadow-alpha) * 0.55)) 0%,
+    transparent 100%
+  );
+  transition: opacity 0.2s ease;
+  opacity: clamp(0, var(--scroll-shadow-alpha), 1);
+}
+
+/* Hover Shadow / Elevation —— 可复用的 1–3 级浮雕类 */
+.elev-0 {
+  /* 默认态：极浅的双层阴影，让卡片默认就有"悬浮感" */
+  box-shadow:
+    0 1px 2px rgba(26, 26, 26, 0.04),
+    0 2px 8px rgba(26, 26, 26, 0.04);
+  transition:
+    box-shadow 0.4s var(--ease-out-expo),
+    transform 0.4s var(--ease-out-expo);
+}
+.elev-1 {
+  /* 悬停态：阴影明显加深、范围扩大，产生从平面抬升的立体感 */
+  box-shadow:
+    0 2px 4px rgba(26, 26, 26, 0.06),
+    0 12px 24px rgba(26, 26, 26, 0.10),
+    0 24px 48px rgba(26, 26, 26, 0.06);
+  transform: translateY(-4px);
+}
+.elev-2 {
+  /* 更夸张一档，用于主 CTA */
+  box-shadow:
+    0 2px 4px rgba(26, 26, 26, 0.08),
+    0 16px 32px rgba(245, 184, 46, 0.22),
+    0 32px 64px rgba(255, 107, 53, 0.18);
+  transform: translateY(-6px);
+}
+
+/* 黄色主题浮动阴影 —— 在黄色调区域更协调 */
+.elev-warm-0 {
+  box-shadow:
+    0 1px 2px rgba(192, 59, 35, 0.05),
+    0 4px 16px rgba(245, 184, 46, 0.10);
+  transition:
+    box-shadow 0.4s var(--ease-out-expo),
+    transform 0.4s var(--ease-out-expo);
+}
+.elev-warm-1 {
+  box-shadow:
+    0 2px 4px rgba(192, 59, 35, 0.08),
+    0 16px 32px rgba(245, 184, 46, 0.28),
+    0 32px 64px rgba(245, 184, 46, 0.12);
+  transform: translateY(-6px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  will-change: opacity, transform;
+  transition:
+    opacity 900ms var(--ease-out-expo),
+    transform 900ms var(--ease-out-expo);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ===== 通用工具类 ===== */
+
+/* 红色虚线边框 — natalio 风 */
+.doodle-frame {
+  border: 2px dashed var(--color-brick);
+  border-radius: 4px;
+  padding: 28px 32px;
+  position: relative;
+}
+.doodle-frame--heavy {
+  border: 3px solid var(--color-brick);
+}
+.doodle-sticker {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-brick);
+  border: 1.5px solid var(--color-brick);
+  border-radius: 999px;
+  background: var(--color-cream);
+  transform: rotate(-3deg);
+}
+
+/* ===== 科技感工具类 ===== */
+
+/* 细网格背景 —— 给任意容器加一层 64px 网格 */
+.tech-grid-bg {
+  position: relative;
+  isolation: isolate;
+}
+.tech-grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 40%, transparent 100%);
+}
+
+/* 更密的网格 —— 24px */
+.tech-grid-bg--dense::before {
+  background-size: 24px 24px;
+}
+
+/* 角标 —— 节标题右上角"// N1 / N2 · 分类"小标签 */
+.corner-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: var(--color-cream);
+  border: 1px solid var(--color-ink);
+  border-radius: 4px;
+  position: relative;
+}
+.corner-tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--color-yellow-500);
+  border-radius: 50%;
+  animation: blink 2.4s ease-in-out infinite;
+}
+.corner-tag--brick {
+  color: var(--color-brick);
+  border-color: var(--color-brick);
+}
+.corner-tag--brick::before {
+  background: var(--color-brick);
+}
+
+/* 卡片扫光 —— 父元素加 .has-shine，内部 ::after 即扫光 */
+.has-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.has-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 240, 180, 0.45) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.has-shine:hover::after {
+  animation: shine-sweep 1.2s ease-out;
+}
+
+/* 闪烁小灯 —— 状态指示 */
+.blink-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--color-yellow-500);
+  border-radius: 50%;
+  animation: blink 2.2s ease-in-out infinite;
+}
+.blink-dot--green { background: #5fbf78; }
+.blink-dot--brick { background: var(--color-brick); }
+
+/* 辉光呼吸光晕 —— 用在重点标题/按钮上 */
+.glow-pulse {
+  animation: glow-pulse 3.2s ease-in-out infinite;
+}
+
+/* 黄色高光 ribbon — milu 风 */
+.ribbon-band {
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  background: var(--color-yellow-400);
+  border-block: 2px solid var(--color-ink);
+  padding: 14px 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(24px, 3vw, 40px);
+  color: var(--color-ink);
+}
+.ribbon-band__track {
+  display: inline-flex;
+  gap: 56px;
+  padding-left: 56px;
+  animation: ribbon-move 30s linear infinite;
+  font-weight: 500;
+}
+.ribbon-band__track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 56px;
+}
+.ribbon-band__track span::after {
+  content: "✺";
+  color: var(--color-brick);
+  font-style: normal;
+}
+
+/* 模块头（Project 内每个 chapter 的小标题） */
+.module-head {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1.5px solid var(--color-ink);
+}
+.module-head__num {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-brick);
+  font-style: italic;
+}
+.module-head__title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.module-head__en {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+.module-head__zh {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* 章节编号徽章（小号） */
+.tag-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+  border-radius: 999px;
+  background: transparent;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: var(--color-yellow-300);
+  color: var(--color-ink);
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-yellow-400); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-yellow-500); }
+
+@media (max-width: 1100px) {
+  :root { --gutter: 48px; --section-pad: 80px; }
+}
+@media (max-width: 720px) {
+  :root { --gutter: 24px; --section-pad: 56px; }
+}
