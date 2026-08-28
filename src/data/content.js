@@ -456,31 +456,31 @@ export const PROJECT_GUANGDIAN = {
               name: '标签 Tag',
               desc: '品牌黄胶囊 / 评分 + 数字 / 重磅热门',
               items: [
-                { variant: 'tag-image', text: '咖啡', image: '/images/guangdian/tags/tag1.svg' },
-                { variant: 'tag-image', text: '4.8', image: '/images/guangdian/tags/tag2.svg' },
-                { variant: 'tag-image', text: '热门', image: '/images/guangdian/tags/tag3.svg' },
+                { variant: 'tag-image', text: '咖啡', image: './images/guangdian/tags/tag1.svg' },
+                { variant: 'tag-image', text: '4.8', image: './images/guangdian/tags/tag2.svg' },
+                { variant: 'tag-image', text: '热门', image: './images/guangdian/tags/tag3.svg' },
               ],
             },
             {
               name: '输入框 Input',
               desc: '搜索栏 · 状态对照',
               items: [
-                { variant: 'input-image', text: '搜索栏1', image: '/images/guangdian/search/search1.svg' },
-                { variant: 'input-image', text: '搜索栏2', image: '/images/guangdian/search/search2.svg' },
+                { variant: 'input-image', text: '搜索栏1', image: './images/guangdian/search/search1.svg' },
+                { variant: 'input-image', text: '搜索栏2', image: './images/guangdian/search/search2.svg' },
               ],
             },
             {
               name: '卡片 Card',
               desc: '白色卡片，奶油描边',
               items: [
-                { variant: 'card-image', text: '卡片', image: '/images/guangdian/card/card.svg' },
+                { variant: 'card-image', text: '卡片', image: './images/guangdian/card/card.svg' },
               ],
             },
             {
               name: '进度条 Progress',
               desc: '进度展示',
               items: [
-                { variant: 'progress-image', text: '进度', image: '/images/guangdian/progress/progress.svg' },
+                { variant: 'progress-image', text: '进度', image: './images/guangdian/progress/progress.svg' },
               ],
             },
           ],

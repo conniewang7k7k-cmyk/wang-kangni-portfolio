@@ -50,7 +50,7 @@ function CoverModule({ project }) {
         {/* 主视觉：启动页 PNG */}
         <img
           className="gd-cover__screen"
-          src="/images/guangdian/启动页.png"
+          src="./images/guangdian/启动页.png"
           alt="逛点启动页"
           draggable="false"
         />
