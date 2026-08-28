@@ -440,7 +440,7 @@ function SystemIconsModule({ m }) {
             <div key={n} className="gd-sys__icon-cell">
               <img
                 className="gd-sys__icon-img"
-                src={`/images/guangdian/icons/icon-${n}.svg`}
+                src={`./images/guangdian/icons/icon-${n}.svg`}
                 alt={`图标 ${n}`}
               />
               <span className="gd-sys__icon-name">{n}</span>
